@@ -12,23 +12,23 @@ import (
 )
 
 func main() {
-    err := godotenv.Load() // Load environment variables from .env file
+    err := godotenv.Load()
     if err != nil {
-        log.Fatal("Error loading .env file") // Log error if .env file cannot be loaded
+        log.Fatal("Error loading .env file")
     }
 
-    config.InitLogger() // Initialize logger
-    config.InitDB() // Initialize database connection
-    config.InitRedis() // Initialize Redis connection
+    config.InitLogger()
+    config.InitDB()
+    config.InitRedis()
 
-    router := gin.Default() // Create a new Gin router
-    router.Static("/uploads", "./uploads") // Serve static files from uploads directory
-    routes.RegisterRoutes(router) // Register API routes
+    router := gin.Default()
+    router.Static("/uploads", "./uploads")
+    routes.RegisterRoutes(router)
 
-    port := os.Getenv("PORT") // Get port from environment variable
+    port := os.Getenv("PORT")
     if port == "" {
-        port = "8080" // Default to port 8080 if not specified
+        port = "8080"
     }
-    log.Println("Server running on port", port) // Log server start
-    router.Run(":" + port) // Start the server
+    log.Println("Server running on port", port)
+    router.Run(":" + port)
 }
