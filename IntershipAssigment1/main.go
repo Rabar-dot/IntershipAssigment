@@ -17,7 +17,7 @@ func main() {
         log.Fatal("Error loading .env file")
     }
 
-    config.InitLogger()
+    config.InitLogger() // This is correctly placed
     config.InitDB()
     config.InitRedis()
 
@@ -32,3 +32,4 @@ func main() {
     log.Println("Server running on port", port)
     router.Run(":" + port)
 }
+
